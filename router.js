@@ -23,7 +23,8 @@ export default function(angularModule, futureRoutes) {
 						if (loaded.name) {
 							return $ocLazyLoad.load(loaded)
 						} else {
-							return $ocLazyLoad.load(loaded[Object.keys(loaded)[0]])
+							var keys = Object.keys(loaded)
+							return $ocLazyLoad.load(loaded[keys[0] === '__esModule' ? keys[1] : keys[0]])
 						}
 					})).then(angular.noop);
 				}
